@@ -6,6 +6,8 @@ gem 'pg'
 
 gem 'pry-rails'
 
+gem 'protected_attributes'
+
 group :development, :test do
   gem 'rspec-rails'
 end

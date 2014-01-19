@@ -3,7 +3,7 @@ require 'net/http'
 
 desc 'Get Earthquake CSV'
 
-task :get_quakes => :environment do
+task :get_earthquakes => :environment do
   uri = URI("http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.csv")
   page = Net::HTTP.get(uri)
   
@@ -14,7 +14,7 @@ task :get_quakes => :environment do
   CSV.foreach("earthquakes.csv", headers: true, header_converters: :symbol) do |row|
   # binding.pry
   print '.'
-    Quake.find_or_create_by_id(time: row[:time],
+    Earthquake.find_or_create_by_id(time: row[:time],
                  latitude: row[:latitude],
                  longitude: row[:longitude],
                  depth: row[:depth],
