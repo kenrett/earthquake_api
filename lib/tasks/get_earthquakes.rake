@@ -14,21 +14,7 @@ task :get_earthquakes => :environment do
   CSV.foreach("earthquakes.csv", headers: true, header_converters: :symbol) do |row|
   # binding.pry
   print '.'
-    Earthquake.find_or_create_by_id(time: row[:time],
-                 latitude: row[:latitude],
-                 longitude: row[:longitude],
-                 depth: row[:depth],
-                 mag: row[:mag],
-                 magtype: row[:magtype],
-                 nst: row[:nst],
-                 gap: row[:gap],
-                 dmin: row[:dmin],
-                 rms: row[:rms],
-                 net: row[:net],
-                 id: row[:id],
-                 updated: row[:updated],
-                 place: row[:place]
-                 )
+    Earthquake.find_or_create_by_quake_id(row.to_hash)
   end
 end
 

@@ -5,7 +5,10 @@ class EarthquakesController < ApplicationController
 
   def index
     scope = Earthquake.all
-
-    scope = scope.day(Time.zone.at(params[:on].to_i).to_date) if params[:on]
+    # binding.pry
+    scope = scope.on_date(Time.at(params[:on])) if params[:on]
+    respond_to do |format|
+      format.json { render json: scope }
+    end
   end
 end

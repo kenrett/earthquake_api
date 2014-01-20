@@ -1,11 +1,12 @@
 class Earthquake < ActiveRecord::Base
-  attr_accessible :time, :latitude, :longitude,:depth, :mag, :magtype, :nst, :gap, :dmin, :rms, :net, :id, :updated, :place
+  attr_accessible :quake_date, :latitude, :longitude,:depth, :mag, :magtype, :nst, :gap, :dmin, :rms, :net, :quake_id, :updated, :place
 
-  default_scope -> { where arel_table[:time].gteq(7.days.ago) }
-  scope :day, -> (time) { where arel_table[:time].gt(time.to_date) }
+  # default_scope -> { where arel_table[:quake_date].gteq(7.days.ago) }
 
-  def self.filter_by_params(params)
-    # scoped = self.scoped
-    # scoped = scoped.where(:)
-  end
+  # scope :on_date, -> (date) { where Arel::Nodes::NamedFunction.new(:date, [arel_table[:quake_date]]).eq(date) }
+
+  # def self.filter_by_params(params)
+  #   # scoped = self.scoped
+  #   # scoped = scoped.where(:)
+  # end
 end
